@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductCatalog.Application.DTOs;
 using ProductCatalog.Application.Interfaces;
@@ -6,6 +7,7 @@ namespace ProductCatalog.WebAPI.Controllers
 {
     [Route("api/categories")]
     [ApiController]
+    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
