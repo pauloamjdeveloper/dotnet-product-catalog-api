@@ -6,6 +6,16 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddInfrastructureJWT(builder.Configuration);
 builder.Services.AddInfrastructureSwagger();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAny", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -25,6 +35,8 @@ app.UseStatusCodePages();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseCors("AllowAny");
 
 app.MapControllers();
 
